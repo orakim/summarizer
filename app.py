@@ -3,7 +3,7 @@ import openai
 from reddit_api import get_reddit_posts
 
 app = Flask(__name__)
-openai.api_key = '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'
+openai.api_key = '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'
 
 @app.route('/')
 def home():
