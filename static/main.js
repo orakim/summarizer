@@ -30,7 +30,7 @@ async function fetchRedditPosts(query, limit) {
 
 // Call OpenAI's API (client-side)
 async function summarizeContent(content) {
-    const openaiApiKey = "YOUR_OPENAI_API_KEY"; // Be careful with exposing your API key!
+    const openaiApiKey = "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"; // Be careful with exposing your API key!
     const openaiApiUrl = "https://api.openai.com/v1/completions";
 
     const response = await fetch(openaiApiUrl, {
@@ -46,6 +46,15 @@ async function summarizeContent(content) {
         }),
     });
 
+    // Log the full response for debugging
     const data = await response.json();
-    return data.choices[0].text.trim();
+    console.log("OpenAI API Response:", data); // Log the full response
+
+    // Check if 'choices' exists and has at least one item
+    if (data.choices && data.choices.length > 0) {
+        return data.choices[0].text.trim();
+    } else {
+        console.error("Error: No choices in OpenAI response");
+        return "Error: Unable to generate summary.";
+    }
 }
