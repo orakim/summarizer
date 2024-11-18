@@ -30,7 +30,7 @@ async function fetchRedditPosts(query, limit) {
 
 // Call OpenAI's API (client-side)
 async function summarizeContent(content) {
-    const openaiApiKey = "YOUR_OPENAI_API_KEY"; // Be careful with exposing your API key!
+    const openaiApiKey = "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"; // Be careful with exposing your API key!
     const openaiApiUrl = "https://api.openai.com/v1/completions";
 
     const response = await fetch(openaiApiUrl, {
