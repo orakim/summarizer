@@ -48,12 +48,12 @@ async function summarizeContent(content) {
 
     // Log the full response for debugging
     const data = await response.json();
-    console.log("OpenAI API Response:", data); // Log the full response
+    console.log("OpenAI API Response:", data); // Log the full response for detailed inspection
 
-    // Check if 'error' exists and log the error message
+    // Check if there's an error in the response
     if (data.error) {
-        console.error("OpenAI API Error:", data.error.message);
-        return "Error: " + data.error.message;
+        console.error("OpenAI API Error:", data.error); // Log the full error object
+        return "Error: " + (data.error.message || "Unknown error");
     }
 
     // Check if 'choices' exists and has at least one item
