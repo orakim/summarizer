@@ -5,7 +5,7 @@ document.getElementById('queryForm').addEventListener('submit', async (event) =>
     const limit = document.getElementById('limit').value;
 
     try {
-        const response = await fetch('/get_summary', {
+        const response = await fetch('https://your-backend-url.com/get_summary', {  // Replace with your deployed backend URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -13,11 +13,8 @@ document.getElementById('queryForm').addEventListener('submit', async (event) =>
             body: JSON.stringify({ query, limit })
         });
 
-        if (!response.ok) {
-            throw new Error(`Server error: ${response.statusText}`);
-        }
-
         const data = await response.json();
+        console.log('Response:', data); // Log response for debugging
         if (data.summary) {
             document.getElementById('summary').innerText = data.summary;
         } else {
@@ -25,6 +22,6 @@ document.getElementById('queryForm').addEventListener('submit', async (event) =>
         }
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('summary').innerText = `Failed to fetch the summary: ${error.message}`;
+        document.getElementById('summary').innerText = 'Failed to fetch the summary.';
     }
 });
